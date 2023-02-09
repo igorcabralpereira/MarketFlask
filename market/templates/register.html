@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %} Registro de Usuários {% endblock %}
+
+{% block content %}
+<body class="text-center">
+    <div class="container" >
+        <form method="POST" class="form-register" style="color:white">
+            {{ form.hidden_tag() }}
+            <br>
+            <img src="{{url_for('static',filename = 'images/logo.svg')}}" width="270  px" height="200">
+            <br>
+            <br>
+            <h1 class="h3 mb-3 font-weight-normal">Crie agora sua Conta!!</h1>
+            <br>
+            {{ form.username.label() }}
+            {{ form.username(class="form-control", placeholder="Usuário") }}
+            <br>
+            {{ form.email.label() }}
+            {{ form.email(class="form-control", placeholder="E-mail") }}
+            <br>
+            {{ form.password1.label() }}
+            {{ form.password1(class="form-control", placeholder="Senha") }}
+            <br>
+            {{ form.password2.label() }}
+            {{ form.password2(class="form-control", placeholder="Confirme a senha") }}
+            <br>
+            <div class="checkbox mb-3">
+                <h6>Já cadastrou uma conta? </h6>
+                <a class="btn btn-sm btn-secondary" href="{{ url_for('login_page') }}">Login</a>
+            </div>
+            {{ form.submit(class="btn btn-lg btn-block btn-success") }}
+            <br>
+        </form>
+    </div>
+</body>
+{% endblock  %}

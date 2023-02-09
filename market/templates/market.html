@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block title %} Market {% endblock %}
+{% block content %}
+
+<style>
+
+    .flex-container {
+        width: 100%;
+        flex-direction: row;
+
+    }
+
+    .items{
+        margin-left: 5px;
+
+    }
+
+
+    .owner{
+        margin: 10px;
+    }
+</style>
+
+
+   <div class="col-12 items">
+        <br>
+        <h2>&numsp;Itens disponíveis no mercado</h2>
+        <p>&numsp;&numsp;Clique em algum item para começar a compra</p>
+        <br>
+        <div class="row">
+
+            <table class="table table-hover table-dark">
+                <thead>
+                    <tr>
+                    <!-- Your Columns HERE -->
+                    <th scope="col">ID</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Código de barras</th>
+                    <th scope="col">Preço</th>
+                    <th scope="col">Opções</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Your rows inside the table HERE: -->
+                    {% for item in items %}
+                    {% include 'includes/items_modal.html' %}
+                    <tr class="items_td">
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.barcode}}</td>
+                    <td>{{item.price}}</td>
+                    <td>
+                        <button class="btn btn-outline btn-info" data-toggle="modal" data-target="#exampleModal-{{ item.id }}">+Info</button>
+                        <button class="btn btn-outline btn-success" data-toggle="modal" data-target="#ComprarConfirm-{{ item.id }}">+Add</button>
+                    </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+   </div>
+   <div class="flex-container">
+        <br>
+         <h2>&numsp;Itens de Propriedade</h2>
+         <p>&numsp;&numsp;Clique em "vender item" para colocar um item de volta no mercado</p>
+          <br>
+          {% for itens_de_propriedade in itens_de_propriedade %}
+             {% include 'includes/itens_propriedade_modal.html' %}
+             <div class="col-md-6" style="float: left">
+                  <div style="margin-bottom: 5px" class="card text-center bg-dark">
+                       <div class="card-body">
+                           <h5 class="card-title">{{ itens_de_propriedade.name }}</h5>
+
+                           <button type="button" class="btn btn-outline-danger" style="margin-bottom: 5px"
+                                       data-toggle="modal" data-target="#VenderConfirm-{{ itens_de_propriedade.id }}">
+                               Vender este Item
+                           </button>
+                           <p class="card-text"><strong>
+                              Este item custa: {{ itens_de_propriedade.price }}
+                           </strong></p>
+                       </div>
+                  </div>
+             </div>
+          {% endfor %}
+
+    </div>
+
+{% endblock  %}

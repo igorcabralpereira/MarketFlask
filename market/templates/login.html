@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %} Página de Login {% endblock %}
+
+{% block content %}
+<body class="text-center">
+    <div class="container" >
+        <form method="POST" class="form-register" style="color:white">
+            {{ form.hidden_tag() }}
+            <br>
+            <img src="{{url_for('static',filename = 'images/logo.svg')}}" width="270px" height="200">
+            <br>
+            <br>
+            <h1 class="h3 mb-3 font-weight-normal">Faça o Login agora mesmo!!</h1>
+            <br>
+            {{ form.username.label() }}
+            {{ form.username(class="form-control", placeholder="Usuário") }}
+            <br>
+            {{ form.password.label() }}
+            {{ form.password(class="form-control", placeholder="Senha") }}
+            <br>
+
+            <div class="checkbox mb-3">
+                <h6>Ainda não se cadastrou ? </h6>
+                <a class="btn btn-sm btn-secondary" href="{{ url_for('register_page') }}">Registre-se agora!!</a>
+            </div>
+            {{ form.submit(class="btn btn-lg btn-block btn-success") }}
+        </form>
+    </div>
+</body>
+{% endblock  %}
